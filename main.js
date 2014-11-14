@@ -80,6 +80,19 @@ MyApp.prototype = {
     this.identityForm.style.display = 'none';
     this.userAgentDiv.style.display = 'block';
     this.ua = new SIP.UA(credentials);
+
+    this.ua.on('invite', this.handleInvite.bind(this));
+  },
+
+  handleInvite: function (session) {
+    if (this.session) {
+      session.reject();
+      return;
+    }
+
+    this.setSession(session);
+
+    session.accept(this.remoteMedia);
   },
 
   sendInvite: function () {
