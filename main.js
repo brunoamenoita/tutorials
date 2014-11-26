@@ -7,6 +7,10 @@ function InstaCall() {
 
   this.terminateButton = document.getElementById('terminate-button');
   this.terminateButton.addEventListener('click', this.terminateSession.bind(this), false);
+
+  document.addEventListener('keydown', function (e) {
+    this.sendDTMF(String.fromCharCode(e.keyCode));
+  }.bind(this), false);
 }
 
 /* This is the InstaCall prototype. */
@@ -42,6 +46,11 @@ InstaCall.prototype = {
       delete this.session;
     }.bind(this));
 
+    session.on('refer', session.followRefer(function (req, newSession) {
+      this.setStatus('Refer!', true);
+      this.setSession(newSession);
+    }.bind(this)));
+
     this.session = session;
   },
 
@@ -51,9 +60,15 @@ InstaCall.prototype = {
   },
 
   terminateSession: function () {
-      if (!this.session) { return; }
+    if (!this.session) { return; }
 
-      this.session.terminate();
+    this.session.terminate();
+  },
+
+  sendDTMF: function (tone) {
+    if (this.session) {
+      this.session.dtmf(tone);
+    }
   },
 
 };
