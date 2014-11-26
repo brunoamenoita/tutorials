@@ -4,6 +4,10 @@ function MyApp() {
 
   this.inviteButton = document.getElementById('invite-button');
   this.inviteButton.addEventListener('click', this.sendInvite.bind(this), false);
+
+  document.addEventListener('keydown', function (e) {
+    this.sendDTMF(String.fromCharCode(e.keyCode));
+  }.bind(this), false);
 }
 
 MyApp.prototype = {
@@ -35,12 +39,23 @@ MyApp.prototype = {
       this.setStatus('Bye! Invite Another?', false);
     }.bind(this));
 
+    session.on('refer', session.followRefer(function (req, newSession) {
+      this.setStatus('Refer!', true);
+      this.setSession(newSession);
+    }.bind(this)));
+
     this.session = session;
   },
 
   setStatus: function (status, disable) {
     this.inviteButton.innerHTML = status;
     this.inviteButton.disabled = disable;
+  },
+
+  sendDTMF: function (tone) {
+    if (this.session) {
+      this.session.dtmf(tone);
+    }
   },
 };
 
