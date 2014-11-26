@@ -6,7 +6,18 @@
   </head>
   <body>
 
-    <div id="user-agent">
+    <!-- Our simple identity form. -->
+    <form id="identity-form">
+      <input type="text" id="address-input"/>
+      <input type="password" id="password-input"/>
+      <button id="auth-button">Authenticate</button>
+    </form>
+
+    <!--
+      Initially hide the user agent div.
+      We will show it again once the form is filled out.
+    -->
+    <div id="user-agent" style="display: none">
       <input type="text" id="destination-input"/>
       <button id="invite-button">Invite Session</button>
       <audio id="remote-media"></audio>
