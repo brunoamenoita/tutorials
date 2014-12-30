@@ -3,3 +3,35 @@
 #invite-button {
     display: none;
 }
+
+
+#presence {
+    position: absolute;
+    top: 1em;
+    left: 2em;
+    font-size: 0.8em;
+}
+
+.accepted ~ #presence {
+    display: none;
+}
+
+#presence strong {
+    display: block;
+    height: 1.5em;
+}
+
+#presence em {
+    display: inline-block;
+    height: 1em;
+}
+
+#presence em::before {
+    content: '';
+    margin-right: 0.5em;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: rgb(10, 249, 54);
+    width: 0.8em;
+    height: 0.8em;
+}
