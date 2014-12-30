@@ -1,3 +1,9 @@
+/** TODO - fonts **/
+@font-face {
+    font-family: "FolioLightRegular";
+    src: url("/shared/fonts/folio-light-webfont.eot?") format("eot"), url("/shared/fonts/folio-light-webfont.woff") format("woff"), url("/shared/fonts/folio-light-webfont.ttf") format("truetype"), url("/shared/fonts/folio-light-webfont.svg#FolioLightRegular") format("svg");
+}
+
 /**
  *
  * Resets and components
@@ -11,6 +17,7 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    font-family: "FolioLightRegular";
 }
 html {
     font-size: 100%;
