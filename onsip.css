@@ -160,7 +160,9 @@ input {
     height: 100%;
     width: 100%;
     background: transparent;
-    pointer-events: none;
+
+    /* Only show if body.accepted */
+    display: none;
 }
 
 #identity-form {
@@ -224,37 +226,14 @@ input {
     bottom: 3.5em;
 }
 
+.accepted #remote-media {
+    display: block;
+}
+
 .accepted #volume-bar {
     display: block;
 }
 
 .failed, .bye {
 
-}
-
-
-
-#user-agent:before {
-    content: 'State 0: Initialized';
-    color: darkred;
-}
-
-#user-agent.progress:before {
-    content: 'State 1: Progress/Ringing';
-}
-
-#user-agent.accepted:before {
-    content: 'State 2: Accepted/Connected';
-}
-
-#user-agent.failed:before {
-    content: 'State 3: Failed. Ready for new session.';
-}
-
-#user-agent.bye:before {
-    content: 'State 4: Bye. Ready for new session.';
-}
-
-#user-agent.refer:before {
-    content: 'State 5: Just got referred.';
 }
