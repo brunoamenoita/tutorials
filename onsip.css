@@ -35,6 +35,7 @@ body.b-instaphone {
 
 button {
     font-size: inherit;
+    font-family: inherit;
     background: #FF5700 no-repeat center center;
 /*    background: rgb(239, 131, 3) no-repeat center center;*/
     border: none;
