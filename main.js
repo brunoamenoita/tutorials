@@ -14,11 +14,8 @@ function MyApp() {
     this.sendDTMF(String.fromCharCode(e.keyCode));
   }.bind(this), false);
 
-  this.volumeUp = document.getElementById('volume-up');
-  this.volumeUp.addEventListener('click', this.raiseVolume.bind(this), false);
-
-  this.volumeDown = document.getElementById('volume-down');
-  this.volumeDown.addEventListener('click', this.lowerVolume.bind(this), false);
+  this.volumeRange = document.getElementById('volume-range');
+  this.volumeRange.addEventListener('change', this.setVolume.bind(this), false);
 
   this.muteButton = document.getElementById('mute-button');
   this.muteButton.addEventListener('click', this.toggleMute.bind(this), false);
@@ -83,28 +80,9 @@ MyApp.prototype = {
     }
   },
 
-  raiseVolume: function () {
-    this.volumeDown.disabled = false;
-
-    /* If volume is very high, jump to max to avoid rounding errors. */
-    if (this.remoteMedia.volume >= .85) {
-      this.remoteMedia.volume = 1;
-      this.volumeUp.disabled = true;
-    } else {
-      this.remoteMedia.volume += .1;
-    }
-  },
-
-  lowerVolume: function () {
-    this.volumeUp.disabled = false;
-
-    /* If volume is very low, jump to min to avoid rounding errors. */
-    if (this.remoteMedia.volume <= .15) {
-      this.remoteMedia.volume = 0;
-      this.volumeDown.disabled = true;
-    } else {
-      this.remoteMedia.volume -= .1;
-    }
+  setVolume: function () {
+    console.log('Setting volume:', this.volumeRange.value, parseInt(this.volumeRange.value, 10));
+    this.remoteMedia.volume = (parseInt(this.volumeRange.value, 10) || 0) / 100;
   },
 
   toggleMute: function () {
