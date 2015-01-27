@@ -115,11 +115,13 @@ MyApp.prototype = {
 
     session.on('failed', function () {
       this.setStatus('failed', false);
+      this.acceptButton.disabled = true;
       delete this.session;
     }.bind(this));
 
     session.on('bye', function () {
       this.setStatus('bye', false);
+      this.acceptButton.disabled = true;
       delete this.session;
     }.bind(this));
 
